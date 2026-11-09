@@ -87,20 +87,12 @@ Got everything in place? Let's move on!
 While it is a bit counter-intuitive to set things up before jumping into vibe-coding - it's important to remember that there exists a gradient betweeen AI-Assisted Development and Vibe-Coding. We're only reaching *slightly* into AI-Assisted Development for this challenge, but it's worth it!
 
 1. Check out the rules in `.cursor/rules/` and add theme-ing information like colour schemes in `frontend-rule.mdc`! You can be as expressive as you'd like in these rules!
-2. We're going to index some docs to make our application more likely to succeed. To do this - we're going to start with `CTRL+SHIFT+P` (or `CMD+SHIFT+P` on Mac) and we're going to type "custom doc" into the search bar. 
+2. Cursor used to let you index outside documentation with **Add New Custom Docs** (`CMD+SHIFT+P` / `CTRL+SHIFT+P`, then "custom doc"). That command is gone. The same idea lives in this repo as two local guides the agent can read:
 
-     ![image](https://i.imgur.com/ILx3hZu.png)
-3. We're then going to copy and paste `https://nextjs.org/docs` into the prompt.
+     - [`docs/nextjs.md`](docs/nextjs.md) stands in for <https://nextjs.org/docs>
+     - [`docs/vercel.md`](docs/vercel.md) stands in for Vercel's deployment docs
 
-     ![image](https://i.imgur.com/psBjpQd.png)
-
-4. We're then going to use the default configs to add these docs to our available and indexed documents.
-
-     ![image](https://i.imgur.com/LULLeaF.png)
-
-5. After that - you will do the same with Vercel's documentation. After which you should see:
-
-     ![image](https://i.imgur.com/hjyXhhC.png) 
+     In chat, type `@` and attach those files before you ask Cursor to build the frontend or deploy. Rules in `.cursor/rules/nextjs-rule.mdc` and `.cursor/rules/vercel-rule.mdc` point the agent at the same files. When a detail is missing, paste the official URL into the chat. The agent can open that page directly. 
 
 </details>
 
