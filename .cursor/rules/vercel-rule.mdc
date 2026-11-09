@@ -1,0 +1,10 @@
+---
+description: Use when deploying this repo to Vercel or editing vercel.json.
+alwaysApply: false
+---
+
+# Vercel
+
+Before deploying or editing `vercel.json`, read `docs/vercel.md`. Confirm routing against https://vercel.com/docs/services and https://vercel.com/kb/guide/python-backend-on-vercel.
+
+Ship `frontend/` and `api/index.py` as one project. Set `OPENAI_API_KEY` in Vercel. Do not expose it to the browser.

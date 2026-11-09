@@ -1,0 +1,11 @@
+---
+description: Use when creating or editing the Next.js frontend in frontend/.
+globs: frontend/**/*
+alwaysApply: false
+---
+
+# Next.js
+
+Before adding or changing the frontend, read `docs/nextjs.md`. For any Next.js API it does not cover, open the matching page on https://nextjs.org/docs and follow that page.
+
+The chat UI posts `{ "message": string }` to the FastAPI route `/api/chat` and renders `{ "reply": string }`. Keep `OPENAI_API_KEY` on the Python server.
