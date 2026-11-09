@@ -1,5 +1,9 @@
 # Project Specific
 uv.lock
+node_modules/
+.next/
+.env.local
+.env*.local
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
