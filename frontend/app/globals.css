@@ -1,0 +1,162 @@
+:root {
+  --ink: #1c1915;
+  --paper: #f3efe6;
+  --card: #fffdf8;
+  --line: #d4cbbd;
+  --muted: #5c564c;
+  --user: #1c1915;
+  --user-text: #f6f1e7;
+  --danger: #6f1d1d;
+  --danger-bg: #f8e4e1;
+  --focus: #8a4b12;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: Georgia, "Iowan Old Style", Palatino, "Palatino Linotype", serif;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+button,
+textarea {
+  font: inherit;
+}
+
+.shell {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem 1.25rem;
+}
+
+.panel {
+  width: min(40rem, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.intro h1 {
+  margin: 0 0 0.4rem;
+  font-size: 2rem;
+  line-height: 1.15;
+}
+
+.intro p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.transcript {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: 1rem;
+  min-height: 16rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.transcript p {
+  margin: 0;
+}
+
+.empty {
+  color: var(--muted);
+}
+
+.bubble {
+  max-width: 85%;
+  width: fit-content;
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.9rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.bubble.user {
+  align-self: flex-end;
+  background: var(--user);
+  color: var(--user-text);
+}
+
+.bubble.coach {
+  align-self: flex-start;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.pending {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.error {
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.75rem;
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.composer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: 0.9rem;
+}
+
+.composer label {
+  font-weight: 700;
+}
+
+.composer textarea {
+  width: 100%;
+  min-height: 3.25rem;
+  max-height: 12rem;
+  padding: 0.7rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 0.7rem;
+  background: var(--paper);
+  color: var(--ink);
+  resize: none;
+  overflow: auto;
+}
+
+.composer textarea:focus,
+.composer button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.composer button {
+  align-self: flex-end;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  background: var(--ink);
+  color: var(--user-text);
+  cursor: pointer;
+}
+
+.composer button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
