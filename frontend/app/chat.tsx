@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, KeyboardEvent, useRef, useState } from "react";
 import { sendMessage } from "@/lib/api";
 
 type Turn = {
@@ -47,6 +47,25 @@ export function Chat() {
     }
   }
 
+  /**
+   * Enter sends the message; Shift+Enter falls through to the textarea's
+   * default behavior and inserts a newline. We skip Enter while an IME
+   * composition is active (e.g. picking a Chinese/Japanese candidate), since
+   * that Enter is meant to confirm the composition, not to send.
+   */
+  function onKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
+    if (event.key !== "Enter" || event.shiftKey || event.nativeEvent.isComposing) {
+      return;
+    }
+    event.preventDefault();
+    // requestSubmit() goes through the form's normal submit path, so onSubmit
+    // stays the single place that validates and sends. Skip it for empty or
+    // in-flight drafts so the browser doesn't pop a "required" tooltip.
+    if (draft.trim() && !pending) {
+      event.currentTarget.form?.requestSubmit();
+    }
+  }
+
   return (
     <>
       <section className="transcript" aria-live="polite">
@@ -74,6 +93,7 @@ export function Chat() {
           placeholder="What do you want to work through?"
           rows={2}
           required
+          onKeyDown={onKeyDown}
           onChange={(event) => {
             setDraft(event.target.value);
             grow(event.target);
