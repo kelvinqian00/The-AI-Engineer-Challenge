@@ -8,6 +8,26 @@ type Turn = {
   content: string;
 };
 
+/**
+ * Curved speech-bubble tail, drawn for the bottom-right corner and mirrored
+ * in CSS for the coach. SVG point (8, 8) sits on the bubble's outer corner.
+ * The path is left open on purpose: SVG fills an open path as if it were
+ * closed, but only strokes the segments actually drawn. So the fill covers
+ * the bubble's corner (and its border, for the outlined coach bubble) while
+ * the outline runs only along the two curved outer edges of the tail.
+ *
+ * Each edge is a quadratic curve ("Q control end"). Both control points sit
+ * on the same side of their edge (offset toward the bottom-left), so the two
+ * edges bend the same way and the tail curls outward like a hook.
+ */
+function BubbleTail() {
+  return (
+    <svg className="tail" viewBox="0 0 16 16" aria-hidden="true">
+      <path d="M 8 0 Q 9 10 15 15 Q 5 14 0 8" />
+    </svg>
+  );
+}
+
 /** Chat form for the mental-coach API. The OpenAI key stays on the server. */
 export function Chat() {
   const [turns, setTurns] = useState<Turn[]>([]);
@@ -75,6 +95,7 @@ export function Chat() {
           turns.map((turn, index) => (
             <p key={`${turn.role}-${index}`} className={`bubble ${turn.role}`}>
               {turn.content}
+              <BubbleTail />
             </p>
           ))
         )}

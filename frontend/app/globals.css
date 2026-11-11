@@ -9,6 +9,11 @@
   --danger: #6f1d1d;
   --danger-bg: #f8e4e1;
   --focus: #8a4b12;
+  /*
+   * Size of the speech-bubble tail's drawing box. The tail itself sticks out
+   * a bit under half of this, diagonally, past the bubble's corner.
+   */
+  --tail: 1rem;
 }
 
 * {
@@ -62,11 +67,11 @@ textarea {
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 1.25rem 1.5rem;
   min-height: 16rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .transcript p {
@@ -78,6 +83,8 @@ textarea {
 }
 
 .bubble {
+  /* Anchors the absolutely positioned .tail SVG below. */
+  position: relative;
   max-width: 85%;
   width: fit-content;
   padding: 0.75rem 0.9rem;
@@ -87,10 +94,31 @@ textarea {
   overflow-wrap: anywhere;
 }
 
+/*
+ * Curved bubble tails (see BubbleTail in chat.tsx). The SVG is centred on the
+ * bubble's outer bottom corner, so the tail sweeps out at 45° from it. The
+ * tail-side corner gets a smaller radius so the tail's two edges land on the
+ * bubble's straight sides rather than on the curve of the corner.
+ */
+.tail {
+  position: absolute;
+  width: var(--tail);
+  height: var(--tail);
+  overflow: visible;
+}
+
 .bubble.user {
   align-self: flex-end;
   background: var(--user);
   color: var(--user-text);
+  border-bottom-right-radius: 0.3rem;
+}
+
+/* No border on the user bubble, so the tail is fill only. */
+.bubble.user .tail {
+  right: calc(var(--tail) / -2);
+  bottom: calc(var(--tail) / -2);
+  fill: var(--user);
 }
 
 .bubble.coach {
@@ -98,6 +126,28 @@ textarea {
   background: var(--paper);
   color: var(--ink);
   border: 1px solid var(--line);
+  border-bottom-left-radius: 0.3rem;
+}
+
+/*
+ * The coach tail is the same drawing, mirrored to the bottom-left. Offsets
+ * are measured from the padding box (inside the 1px border); the extra 0.5px
+ * puts the centre of the tail's 1px stroke on the centre of the bubble's 1px
+ * border, so the two outlines meet without a step.
+ */
+.bubble.coach .tail {
+  left: calc(var(--tail) / -2 - 0.5px);
+  bottom: calc(var(--tail) / -2 - 0.5px);
+  transform: scaleX(-1);
+  fill: var(--paper);
+  stroke: var(--line);
+  stroke-width: 1px;
+  stroke-linejoin: round;
+}
+
+/* Keep the outline 1px even if --tail scales the drawing up or down. */
+.tail path {
+  vector-effect: non-scaling-stroke;
 }
 
 .pending {
@@ -120,7 +170,7 @@ textarea {
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 1rem;
-  padding: 0.9rem;
+  padding: 1.25rem;
 }
 
 .composer label {
