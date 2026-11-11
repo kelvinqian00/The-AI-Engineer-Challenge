@@ -72,6 +72,35 @@ textarea {
   line-height: 1.45;
 }
 
+/* Safety disclaimer above the chat; the accent bar marks it as a notice. */
+.notice {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--focus);
+  border-radius: 0.75rem;
+  padding: 0.9rem 1.1rem;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.notice-title {
+  margin: 0 0 0.4rem;
+  font-weight: 700;
+}
+
+.notice ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.notice a {
+  color: var(--ink);
+  font-weight: 700;
+}
+
 .transcript {
   background: var(--card);
   border: 1px solid var(--line);
