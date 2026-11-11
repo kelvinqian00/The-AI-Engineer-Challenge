@@ -191,6 +191,7 @@ textarea {
   min-height: 3.25rem;
   max-height: 12rem;
   padding: 0.7rem 0.75rem;
+  margin: 0.25rem 0;
   border: 1px solid var(--line);
   border-radius: 0.7rem;
   /* Pale tint of the coach-bubble purple, so the input echoes the bubbles. */
