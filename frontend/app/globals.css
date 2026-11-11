@@ -1,14 +1,22 @@
+/*
+ * Palette: Sangonomiya Kokomi-inspired (https://www.color-hex.com/color-palette/1024275).
+ * Pink, light purple, dark blue-purple and off-white come from that palette;
+ * --line and --muted are in-between shades picked to fit it (--muted keeps
+ * ~4.9:1 contrast on the pink background for readability).
+ */
 :root {
-  --ink: #1c1915;
-  --paper: #f3efe6;
-  --card: #fffdf8;
-  --line: #d4cbbd;
-  --muted: #5c564c;
-  --user: #1c1915;
-  --user-text: #f6f1e7;
+  --ink: #2e2e59;
+  /* Palette pink #f6d4cb mixed 50/50 with white, softer for a full page. */
+  --paper: #fbeae5;
+  --card: #f8f7fd;
+  --coach: #dccee8;
+  --line: #c9b8db;
+  --muted: #5a5680;
+  --user: #2e2e59;
+  --user-text: #f8f7fd;
   --danger: #6f1d1d;
   --danger-bg: #f8e4e1;
-  --focus: #8a4b12;
+  --focus: #8d7bb0;
   /*
    * Size of the speech-bubble tail's drawing box. The tail itself sticks out
    * a bit under half of this, diagonally, past the bubble's corner.
@@ -35,6 +43,7 @@ body {
 button,
 textarea {
   font: inherit;
+  background: #ffffff;
 }
 
 .shell {
@@ -123,7 +132,7 @@ textarea {
 
 .bubble.coach {
   align-self: flex-start;
-  background: var(--paper);
+  background: var(--coach);
   color: var(--ink);
   border: 1px solid var(--line);
   border-bottom-left-radius: 0.3rem;
@@ -139,7 +148,7 @@ textarea {
   left: calc(var(--tail) / -2 - 0.5px);
   bottom: calc(var(--tail) / -2 - 0.5px);
   transform: scaleX(-1);
-  fill: var(--paper);
+  fill: var(--coach);
   stroke: var(--line);
   stroke-width: 1px;
   stroke-linejoin: round;
@@ -184,7 +193,8 @@ textarea {
   padding: 0.7rem 0.75rem;
   border: 1px solid var(--line);
   border-radius: 0.7rem;
-  background: var(--paper);
+  /* Pale tint of the coach-bubble purple, so the input echoes the bubbles. */
+  background: #ece4f3;
   color: var(--ink);
   resize: none;
   overflow: auto;
